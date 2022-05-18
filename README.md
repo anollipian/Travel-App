@@ -4,7 +4,11 @@
 This project requires us to build out a travel app that obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs. 
 
 ## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+Please use 
+`cd` into your new folder and run:
+- ```npm install``` to install the needed packages.
+- ```npm start``` to start the app.
+- ```npm run test``` to run the test cases. 
+- ``` npm run build-prod``` to run the program.
+- This app runs on localhost:9000, but you can of course edit that in index.js
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
