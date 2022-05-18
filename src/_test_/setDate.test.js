@@ -1,10 +1,14 @@
-/** * @jest-environment jsdom */
+/**
+ * @jest-environment jsdom
+ */
 
-const setDate = require('../client/js/setDate')
+import "regenerator-runtime/runtime";
+
+const validateDates = require('../client/js/setDate')
 
 describe("Testing the setting Date functionality", () => {
     // The test() function has two arguments - a string description, and an actual test as a callback function.  
-    test("Testing the setDate() function", () => {
+    test("Testing the validateDates() function", () => {
        
-           expect(setDate).toBeDefined();
+           expect(validateDates).toBeDefined();
 })});
