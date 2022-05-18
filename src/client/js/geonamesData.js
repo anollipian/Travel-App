@@ -14,10 +14,10 @@ function getTripData(event) {
     let tripStart = Client.subtractDates(TripDate);
 
     let tripLength = Client.subtractTwoDates(TripDate, TripEndDate);
+    
     if (TripDate>TripEndDate) {
         console.log("here");
         document.getElementById('error').style.display = 'block';
-
         document.getElementById("error").innerHTML = "Ending Date Can't Be before start date";
         return;
     }
