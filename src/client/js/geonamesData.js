@@ -8,24 +8,24 @@ function getTripData(event) {
     if(cityName=="" || TripDate=="" ||TripEndDate=="")
     {
         document.getElementById('error').style.display = 'block';
-        document.getElementById("error").innerHTML='You need to provide valid data';
         return;
     }
     let tripStart = Client.subtractDates(TripDate);
 
-    let tripLength = Client.subtractTwoDates(TripDate, TripEndDate);
     
     if (TripDate>TripEndDate) {
-        console.log("here");
         document.getElementById('error').style.display = 'block';
         document.getElementById("error").innerHTML = "Ending Date Can't Be before start date";
         return;
     }
 
+    let tripLength = Client.subtractTwoDates(TripDate, TripEndDate);
+    console.log(tripLength);
 
-    getCountry({ city: cityName, day: tripStart })
+
+    getCountry({ city: cityName, day: tripStart})
         .then(function (data) {
-            showData(data, cityName, TripDate, tripStart)
+            showData(data, cityName, TripDate, tripStart, tripLength)
         })
 }
 const getCountry = async (data = {}) => {
@@ -64,7 +64,7 @@ const getCountry = async (data = {}) => {
     }
 }
 
-function showData(data, city, TripDate, tripStart) {
+function showData(data, city, TripDate, tripStart,tripLength) {
     document.getElementById('cityImg').src = "";
     document.getElementById('Tripentry').style.display = 'block';
     console.log("final data");
@@ -75,6 +75,7 @@ function showData(data, city, TripDate, tripStart) {
     document.getElementById('lowtemp').innerHTML = data.lowTemp;
     document.getElementById("forecast").innerHTML = data.forecast;
     document.getElementById('cityImg').src = data.photoUrl;
+    document.getElementById('tripLength').innerHTML = tripLength;
 }
 
 export { getTripData }

@@ -1,9 +1,16 @@
 function clearfield()
 {
-    document.getElementById('temp').innerHTML = "";
-    document.getElementById('content').innerHTML = "";
-    document.getElementById('date').innerHTML = "";
+    document.getElementById('Tripentry').style.display = 'none';
+    document.getElementById('cityImg').src = "";
     document.getElementById('city').innerHTML = "";
+    document.getElementById('date').innerHTML = "";
+    document.getElementById('tripStart').innerHTML = "";
+    document.getElementById('hightemp').innerHTML = "";
+    document.getElementById('lowtemp').innerHTML = "";
+    document.getElementById("forecast").innerHTML = "";
+    document.getElementById('cityImg').src = "";
+    document.getElementById('tripLength').innerHTML = "";
+
 }
 
 function handleError(error) {
