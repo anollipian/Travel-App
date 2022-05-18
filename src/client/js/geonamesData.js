@@ -2,14 +2,18 @@ const port = "8000";
 function getTripData(event) {
     event.preventDefault();
     let cityName = document.getElementById('destination').value;
-    if(cityName=="")
+    let TripDate = document.getElementById('datefield').value;
+    let TripEndDate = document.getElementById('enddatefield').value;
+
+
+    if(cityName=="" || TripDate=="" ||TripEndDate=="")
     {
-        document.getElementById("error").innerHTML = "You need to provide a city";
+        document.getElementById('error').style.display = 'block';
+        document.getElementById("error").innerHTML='You need to provide valid data';
         return;
     }
-    let TripDate = document.getElementById('datefield').value;
     let tripStart = Client.subtractDates(TripDate);
-    let TripEndDate = document.getElementById('enddatefield').value;
+
     let tripLength = Client.subtractTwoDates(TripDate, TripEndDate);
     if (Client.validateDates(TripDate, TripEndDate)) {
         console.log("here");
