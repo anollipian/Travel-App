@@ -5,7 +5,6 @@ function getTripData(event) {
     let TripDate = document.getElementById('datefield').value;
     let TripEndDate = document.getElementById('enddatefield').value;
 
-
     if(cityName=="" || TripDate=="" ||TripEndDate=="")
     {
         document.getElementById('error').style.display = 'block';
@@ -15,8 +14,10 @@ function getTripData(event) {
     let tripStart = Client.subtractDates(TripDate);
 
     let tripLength = Client.subtractTwoDates(TripDate, TripEndDate);
-    if (Client.validateDates(TripDate, TripEndDate)) {
+    if (TripDate>TripEndDate) {
         console.log("here");
+        document.getElementById('error').style.display = 'block';
+
         document.getElementById("error").innerHTML = "Ending Date Can't Be before start date";
         return;
     }
@@ -74,7 +75,6 @@ function showData(data, city, TripDate, tripStart) {
     document.getElementById('lowtemp').innerHTML = data.lowTemp;
     document.getElementById("forecast").innerHTML = data.forecast;
     document.getElementById('cityImg').src = data.photoUrl;
-
 }
 
 export { getTripData }

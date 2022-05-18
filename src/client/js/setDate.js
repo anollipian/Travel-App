@@ -50,18 +50,4 @@ function subtractTwoDates(startDate, EndDate) {
   return days;
 }
 
-function validateDates(startDate, EndDate) {
-  var day1 = new Date(startDate);
-  console.log(day1);
-  var day2 = new Date(EndDate);
-  console.log(day2);
-  var regExp = /(\d{1,2})\/(\d{1,2})\/(\d{2,4})/;
-  if(parseInt(EndDate.replace(regExp, "$3$2$1")) > parseInt(startDate.replace(regExp, "$3$2$1"))){
- // if (parseInt(day2.replace(regExp, "$3$2$1")) > parseInt(day1.replace(regExp, "$3$2$1"))) {
-    return true;
-  }
-  else
-    return false;
-}
-
-export { subtractDates, setDate, subtractTwoDates,validateDates }
+export { subtractDates, setDate, subtractTwoDates }
