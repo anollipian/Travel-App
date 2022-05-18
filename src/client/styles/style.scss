@@ -10,7 +10,6 @@ body {
     display: grid;
     grid-template-areas:
         "td"
-        "ff"
         "ee";
     justify-content: center;
     grid-gap: 2em;
@@ -154,7 +153,9 @@ button:focus {
 
 @media only screen and (min-width: 900px) {
     #app {
-       // grid-template-areas:
+       grid-template-areas:
+       "td ee"
+       "td ee";
            
     }
 }
