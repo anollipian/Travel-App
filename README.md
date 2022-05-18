@@ -10,5 +10,5 @@ Please use
 - ```npm start``` to start the app.
 - ```npm run test``` to run the test cases. 
 - ``` npm run build-prod``` to run the program.
-- This app runs on localhost:9000, but you can of course edit that in index.js
+- This app runs on localhost:8000, but you can of course edit that in index.js
 
