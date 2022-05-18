@@ -1,3 +1,5 @@
+/** * @jest-environment jsdom */
+
 const setDate = require('../client/js/setDate')
 
 describe("Testing the setting Date functionality", () => {

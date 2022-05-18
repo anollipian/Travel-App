@@ -33,7 +33,6 @@ function setDate() {
   document.getElementById("datefield").setAttribute("min", today);
   document.getElementById("datefield").setAttribute("max", laterDate);
   document.getElementById("enddatefield").setAttribute("min", today);
-
 }
 function subtractDates(tripDay) {
   let today = new Date().toISOString().slice(0, 10);

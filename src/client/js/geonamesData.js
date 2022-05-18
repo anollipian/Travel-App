@@ -2,6 +2,11 @@ const port = "8000";
 function getTripData(event) {
     event.preventDefault();
     let cityName = document.getElementById('destination').value;
+    if(cityName=="")
+    {
+        document.getElementById("error").innerHTML = "You need to provide a city";
+        return;
+    }
     let TripDate = document.getElementById('datefield').value;
     let tripStart = Client.subtractDates(TripDate);
     let TripEndDate = document.getElementById('enddatefield').value;

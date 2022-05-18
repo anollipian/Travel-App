@@ -26,23 +26,14 @@
 
             <div class="TripData">
                 <form onsubmit="Client.getTripData(event)">
-                    <div>
                     <h3>Where are you going?</h3>
                     <input id="destination" type="text" value="" required placeholder="city name" />
-                </div>
-                <div>
                     <h3>When are you going? </h3>
-                    <input type="date" id="datefield" required name="trip-start" />
-                </div>
-                <div>
+                    <input type="date" id="datefield" required name="trip-start"/>
                     <h3>When are you returning? </h3>
-                    <input type="date" id="enddatefield" required name="trip-end" />
-                </div>
-                <div>
+                    <input type="date" id="enddatefield" required name="trip-end"/>
                     <input type="submit" name="Submit" value="submit" onclick="Client.getTripData(event)"
                     onsubmit=" Client.getTripData(event)"></input>
-                </div>
-
                 </form>
                 
             </div>
