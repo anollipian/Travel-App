@@ -1,27 +1,22 @@
 const port = "8000";
-function getTripData(event){
+function getTripData(event) {
     event.preventDefault();
     let cityName = document.getElementById('destination').value;
-    console.log(cityName)
-    /*let zipcode = document.getElementById('zipcode').value;
-    console.log(zipcode)*/
     let TripDate = document.getElementById('datefield').value;
-    console.log(TripDate);
-    let days = Client.suntractDates(TripDate);
+    let tripStart = Client.subtractDates(TripDate);
+    let TripEndDate = document.getElementById('enddatefield').value;
+    let tripLength = Client.subtractTwoDates(TripDate, TripEndDate);
+    if (Client.validateDates(TripDate, TripEndDate)) {
+        console.log("here");
+        document.getElementById("error").innerHTML = "Ending Date Can't Be before start date";
+        return;
+    }
 
 
-
-    getCountry({ city: cityName,day:days /*zip: zipcode*/ })
-       // .then(function (data) {
-        //    getweather({ city: data.name, lat: data.lat, lon: data.lng, day:days })
-            .then(function (data) {
-                showData(data)
-            })
-          //  .then(function(){
-            //    getPhoto({city: cityName})
-            //})
-      //  })
-       
+    getCountry({ city: cityName, day: tripStart })
+        .then(function (data) {
+            showData(data, cityName, TripDate, tripStart)
+        })
 }
 const getCountry = async (data = {}) => {
     const url = `http://localhost:${port}/getCountry`;
@@ -38,10 +33,11 @@ const getCountry = async (data = {}) => {
         const data = await result.json();
         const newData = {};
         console.log("returned data")
-        //console.log(data.temp);
-        newData.temp = data.temp;
-        newData.photoUrl = data.photoData.hits[2].largeImageURL;
-        //console.log(data.photoData.hits[2].largeImageURL);
+        console.log(data);
+        newData.highTemp = data.hightemp;
+        newData.lowTemp = data.lowtemp;
+        newData.forecast = data.forecast;
+        newData.photoUrl = data.photoData.hits[3].largeImageURL;
         console.log(newData);
 
         // check for response.status
@@ -58,71 +54,18 @@ const getCountry = async (data = {}) => {
     }
 }
 
-const getweather = async (data = {}) => {
-    const url = `http://localhost:${port}/getWeather`;
-    console.log(data);
-    const result = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-            value: data
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    try {
-        const data = await result.json();
-        console.log("returned data")
-        console.log(data)
-        // check for response.status
-        if (!result.ok || data.cod == 404) {
-            Client.clearfield();
-            throw new Error(data.message);
-        }
-        else {
-            document.getElementById('error').style.display = 'none';
-            return data;
-        }
-    } catch (error) {
-        Client.handleError(error);
-    }
-}
-
-
-const getPhoto = async (data = {}) => {
-    const url = `http://localhost:${port}/getPicture`;
-    const result = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-            value: data
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    try {
-        const data = await result.json();
-        console.log("returned photo")
-        console.log(data)
-        // check for response.status
-        if (!result.ok || data.cod == 404) {
-            Client.clearfield();
-            throw new Error(data.message);
-        }
-        else {
-            document.getElementById('error').style.display = 'none';
-            return data;
-        }
-    } catch (error) {
-        Client.handleError(error);
-    }
-}
- 
-function showData (data)
-{
-    console.log("final data")
-    document.getElementById('temp').innerHTML=data.temp;
+function showData(data, city, TripDate, tripStart) {
+    document.getElementById('cityImg').src = "";
+    document.getElementById('Tripentry').style.display = 'block';
+    console.log("final data");
+    document.getElementById('city').innerHTML = city;
+    document.getElementById('date').innerHTML = TripDate;
+    document.getElementById('tripStart').innerHTML = tripStart;
+    document.getElementById('hightemp').innerHTML = data.highTemp;
+    document.getElementById('lowtemp').innerHTML = data.lowTemp;
+    document.getElementById("forecast").innerHTML = data.forecast;
     document.getElementById('cityImg').src = data.photoUrl;
+
 }
 
 export { getTripData }

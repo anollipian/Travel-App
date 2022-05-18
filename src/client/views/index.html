@@ -1,76 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" href="#">
-  <title>Travel Planner</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner</title>
 </head>
 
-
 <body>
-  <header>
-    <div class="">
-      My Trips
-    </div>
-    <div class="">
-      + add trip
-    </div>
-  </header>
 
-  <main>
-    <div id="app">
-
-      <div class="holder headline">
-        Travel Planner
-      </div>
-
-      <section>
-          <label for="trip">My trip Data: </label>
-          <form class="TripData" onsubmit="Client.getTripData(event)">
-            <input id="destination" type="text" value="" placeholder="city name">
-            <!--<input id="zipcode" type="text" value="" placeholder="zipcode">-->
-            <input type="date" id="datefield" name="trip-start">     
-            <button type="submit" name="Submit" value="submit" onclick="Client.getTripData(event)" onsubmit=" Client.getTripData(event)">Submit</button>
-        </form>
-    </section>
-
-
-      <div class="holder entry">
-        <div class="title">Most Recent Entry</div>
-        <div id="entryHolder">
-          <div id="date"> </div>
-          <div id="temp"></div>
-          <div id="content"></div>
-          <div id="city"></div>
+    <header>
+        <div class="">
+            My Trips
         </div>
-        <img id="cityImg">
+        <div class="addTrip">
+            + add trip
+        </div>
+    </header>
+    <main>
+        <div id="mainApp">
+            <h1>Travel Planner</h1>
 
-        <div id="error">Please enter a valid city zipcode</div>
-      </div>
+            <div id="error">Please enter valid data :)! </div>
 
-      <!-- <div class="holder feel"> -->
-        <!--<label for="feelings">How are you feeling today?</label>-->
-        <!-- <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>-->
-        <!-- <button id="generate" type="submit"> Generate </button>-->
-        <!--<button id="generate" type="submit"></button>-->
-       </div>
-    </div>
-  </main>
+            <div class="TripData">
+                <form onsubmit="Client.getTripData(event)">
+                    <div>
+                    <h3>Where are you going?</h3>
+                    <input id="destination" type="text" value="" required placeholder="city name" />
+                </div>
+                <div>
+                    <h3>When are you going? </h3>
+                    <input type="date" id="datefield" required name="trip-start" />
+                </div>
+                <div>
+                    <h3>When are you returning? </h3>
+                    <input type="date" id="enddatefield" required name="trip-end" />
+                </div>
+                <div>
+                    <input type="submit" name="Submit" value="submit" onclick="Client.getTripData(event)"
+                    onsubmit=" Client.getTripData(event)"></input>
+                </div>
 
-  <footer>
+                </form>
+                
+            </div>
 
-  </footer>
 
-  <script>
-    // Check that service workers are supported
-    if ('serviceWorker' in navigator) {
-      // Use the window load event to keep the page load performant
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js');
-      });
-    }
-  </script>
+            <section id="Tripentry">
+
+                <div class="city">
+                    <img id="cityImg">
+                </div>
+
+                <label> My Trip is to:</label>
+                <div id="city"></div>
+
+                <label>Departing at: </label>
+                <div id="date"></div>
+                <label>Your Trip starts in <span id="tripStart"></span> days.</label>
+                <label> High: <span id="hightemp"></span></label>
+                <label> Low: <span id="lowtemp"></span></label>
+                <label>Expected weather for this date is: </label><span id="forecast"></span>
+
+
+            </section>
+
+        </div>
+    </main>
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+       </script> 
 </body>
 
 </html>

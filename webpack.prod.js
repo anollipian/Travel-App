@@ -50,15 +50,10 @@ module.exports = {
             verbose: true,
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
-            protectWebpackAssets: false
+            protectWebpackAssets: false,
+            cleanOnceBeforeBuildPatterns: [path.join(__dirname, "dist/**/*")]
         }),
         new MiniCssExtractPlugin({ filename: '[name].css' }),
-        new WorkboxPlugin.GenerateSW(
-            {
-                //these 2 lines can be  removed 
-            ClientClaim: true,
-            skipWaiting:true
-            }
-        )
+        new WorkboxPlugin.GenerateSW()
     ]
 }
