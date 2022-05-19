@@ -1,3 +1,5 @@
+//This function Prevents the user from choosing a date later than 16 days from today. 
+//The Api can only show expected weather 16 days from today. 
 setDate();
 
 function setDate() {
@@ -34,6 +36,7 @@ function setDate() {
   document.getElementById("datefield").setAttribute("max", laterDate);
   document.getElementById("enddatefield").setAttribute("min", today);
 }
+// Counter till the trip starts.
 function subtractDates(tripDay) {
   let today = new Date().toISOString().slice(0, 10);
   var day1 = new Date(today);
@@ -42,6 +45,7 @@ function subtractDates(tripDay) {
   let days = difference / (1000 * 3600 * 24)
   return days;
 }
+// Calculates the trip's length.
 function subtractTwoDates(startDate, EndDate) {
   var day1 = new Date(startDate);
   var day2 = new Date(EndDate);

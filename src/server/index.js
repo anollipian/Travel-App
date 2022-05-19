@@ -58,9 +58,11 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
+//Get the Trip Data
 app.post('/getCountry', async function (req, res) {
     const username = process.env.geo_username;
     const city = req.body.value.city;
+    //Call The Geonames Api to get the lat & long data of the destination.
     const url = `http://api.geonames.org/searchJSON?name=${city}&maxRows=1&username=${username}`;
     const countrydata = await fetch(url);
     const jsondata = await countrydata.json();
@@ -72,6 +74,7 @@ app.post('/getCountry', async function (req, res) {
         return res.status(404).json({ Validation: "We Couldn't find a city with this name, please try again" });
     }
     else {
+            //Call The Weatherbit Api to get the Weather data of the destination.
         const wurl = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&&lat=${data.lat}&lon=${data.lng}&key=${process.env.weather_apiKey}`;
         const weather = await fetch(wurl);
         const jsonwdata = await weather.json();
@@ -85,10 +88,12 @@ app.post('/getCountry', async function (req, res) {
             return res.status(404).json({ Validation: "An error occured, please check your input" });
         }
         else {
+            //Add the weather Data to the ProjectData object. 
             projectData["hightemp"] = wdata.max_temp;
             projectData["lowtemp"] = wdata.low_temp;
             //console.log(wdata.weather.description);
             projectData["forecast"] = wdata.weather.description;
+                //Call The PixaBay Api to get a photo of the destination.
             const purl = `https://pixabay.com/api/?key=${process.env.pixi_Api}&q=${city}&image_type=photo`;
             console.log("The url is ", purl);
             const photoData = await fetch(purl);
