@@ -44,26 +44,7 @@ function listening() {
     console.log(`running on localhost: ${port}`);
 };
 
-
-console.log(`Your API key is ${process.env.oldWeatherApi}`);
-
-const BASE_API_URL = "https://api.meaningcloud.com/sentiment-2.1";
-const textapi = process.env.oldWeatherApi;
-console.log("textapi", textapi)
-
-
 // Post Route
-app.post('/addTemp', addTempData);
-
-function addTempData(req, res) {
-    console.log("we are here");
-    projectData['date'] = req.body.date;
-    projectData['temp'] = req.body.Temp;
-    projectData['Mode'] = req.body.Mode;
-    projectData['City'] = req.body.City;
-    console.log("the project data")
-    res.send(projectData);
-}
 
 // Initialize all route with a callback function
 app.get('/all', getData);
