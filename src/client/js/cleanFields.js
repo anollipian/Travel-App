@@ -1,3 +1,4 @@
+//Clean the displayed fields after every submission 
 function clearfield()
 {
     document.getElementById('Tripentry').style.display = 'none';
@@ -13,6 +14,7 @@ function clearfield()
 
 }
 
+//Displays an error when the user enters unvalid Data.
 function handleError(error) {
     if (error.cod = 404) {
         document.getElementById('error').style.display = 'block';
