@@ -83,17 +83,21 @@ app.post('/getCountry', async function (req, res) {
     const url = `http://api.geonames.org/searchJSON?name=${city}&maxRows=1&username=${username}`;
     const countrydata = await fetch(url);
     const jsondata = await countrydata.json();
+    console.log(jsondata);
     const data = jsondata.geonames[0];
+    console.log("Country Data");
+    console.log(data);
     if (data == null) {
         return res.status(404).json({ Validation: "We Couldn't find a city with this name, please try again" });
     }
     else {
         const wurl = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&&lat=${data.lat}&lon=${data.lng}&key=${process.env.weather_apiKey}`;
-       //console.log(wurl);
         const weather = await fetch(wurl);
         const jsonwdata = await weather.json();
         const dateday = req.body.value.day;
-        console.log(dateday);
+        console.log("weatherdata");
+        console.log(weather);
+        console.log(jsonwdata);
         const wdata = jsonwdata.data[dateday];
        console.log(wdata);
         if (wdata == null) {
@@ -104,7 +108,6 @@ app.post('/getCountry', async function (req, res) {
             projectData["lowtemp"] = wdata.low_temp;
             //console.log(wdata.weather.description);
             projectData["forecast"] = wdata.weather.description;
-
             const purl = `https://pixabay.com/api/?key=${process.env.pixi_Api}&q=${city}&image_type=photo`;
             console.log("The url is ", purl);
             const photoData = await fetch(purl);
